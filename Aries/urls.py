@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from profiles.views import RegisterProfileView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^register/$', RegisterProfileView.as_view(), name='register-profile'),
 ]

@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'profiles.Profile'
+
 
 # Application definition
 
@@ -37,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
+    'voyage',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -77,15 +82,11 @@ DATABASES = {
     'default': {
         'HOST': '127.0.0.1',
         'NAME': 'aries_db',
-        'ENGINE': 'mysql.connector.django',
-        'USER': 'root',
-        'PASSWORD': 'coderslab',
-        'OPTIONS': {
-            'autocommit': True,
-        },
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'USER': 'postgres',
+        'PASSWORD': 'aries',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
