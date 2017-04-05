@@ -11,8 +11,18 @@
   <link rel="stylesheet" href="{% static 'profiles/css/style.css' %}">
 
 </head>
-    <body>
+    <body background="https://api.nasa.gov/images/apod.jpg">
         {% block content %}
         {% endblock %}
+            <h1>WarmUp#1:</h1>
+
+            <img id="picture" alt="Nasa picture of the Day" height="42" width="42">
+
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.js"
+  			  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  			  crossorigin="anonymous"></script>
+        <script src="{% static 'profiles/js/app.js' %}"></script>
     </body>
 </html>
