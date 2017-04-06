@@ -1,0 +1,36 @@
+{% extends 'voyage/base.html' %}
+
+{% block content %}
+<header>
+	<h1>Waypoint List</h1>
+</header>
+
+<div class="fish" id="fish"></div>
+<div class="fish" id="fish2"></div>
+
+<div id="form"  max-width="100%">
+	<div class="col-xs-4">
+		<ol>
+			{% for waypoint in object_list %}
+			<div class="row">
+				<li>
+					<div class="col-xs-6">
+						<a href="{{waypoint.get_absolute_url}}">{{waypoint}}</a>
+					</div>
+					<div class="col-xs-3">
+						<a href="{% url 'modify-waypoint' pk=waypoint.pk %}" type="button" class="btn btn-default" >Modify</a>
+					</div>
+					<div class="col-xs-3">
+						<a href="{% url 'delete-waypoint' pk=waypoint.pk %}" type="button" class="btn btn-danger" >Delete</a>
+					</div>
+				</li>
+			</div>
+			{% empty %}
+			No Waypoints
+			{% endfor %}
+
+		</ol>
+		<a href="{% url 'add-waypoint' %}" type="button" class="btn btn-default" >Add Waypoint</a>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'voyage/base.html' %}
+
+{% block content %}
+
+<header>
+	<h1>Add/Modify Waypoint</h1>
+</header>
+
+<div id="form">
+
+	<div class="fish" id="fish"></div>
+	<div class="fish" id="fish2"></div>
+
+	<form id="waterform" method="post">
+		{% csrf_token %}
+		{{form}}
+
+		<input type="submit" value="Add/Modify" />
+	</form>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+{{ form.media }}
+{% endblock %}
