@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from profiles.views import IndexView,LoginView, LogoutView, ProfileView, RegisterProfileView
+from profiles.views import LoginView, LogoutView, ProfileView, RegisterProfileView
 from voyage.views import (
     AddPortView,
     AddShipView,
@@ -23,6 +23,7 @@ from voyage.views import (
     DeletePortView,
     DeleteShipView,
     DeleteVoyageView,
+    IndexView,
     ModifyPortView,
     ModifyShipView,
     ModifyVoyageView,

@@ -6,12 +6,16 @@ from django.views.generic.edit import (
     FormView,
     UpdateView,
     )
+from django.views import View
 from django.views.generic.list import ListView
 from django.shortcuts import render
 
-from .forms import PortForm
+from .forms import PortForm,VoyageForm
 from .models import Port,Ship,Voyage
 
+class IndexView(View):
+    def get(self, request):
+        return render(request, 'voyage/index.html', {})
 
 # Views to create/modify/display Ships.
 class ShipsView(ListView):
@@ -46,11 +50,11 @@ class AddPortView(CreateView):
 
 class ModifyPortView(UpdateView):
     model = Port
-    fields = '__all__'
+    form_class = PortForm
 
 class DeletePortView(DeleteView):
     model = Port
-    success_url = reverse_lazy('voyages')
+    success_url = reverse_lazy('ports')
 
 
 # Views to create/modify/display Voyages.
@@ -62,11 +66,11 @@ class VoyageView(DetailView):
 
 class AddVoyageView(CreateView):
     model = Voyage
-    fields = '__all__'
+    form_class = VoyageForm
 
 class ModifyVoyageView(UpdateView):
     model = Voyage
-    fields = '__all__'
+    form_class = VoyageForm
 
 class DeleteVoyageView(DeleteView):
     model = Voyage

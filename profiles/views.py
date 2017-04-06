@@ -50,6 +50,4 @@ class ProfileView(UpdateView):
     model = Profile
     form_class = ProfileForm
 
-class IndexView(View):
-    def get(self, request):
-        return render(request, 'profiles/index.html', {})
+

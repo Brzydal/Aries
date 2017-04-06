@@ -8,15 +8,28 @@ body, html{
 	font-family: 'Sniglet', cursive;
 }
 
+
+.nav,.navbar-brand
+{
+    font-size: 24px;
+    font-family: 'Raleway', sans-serif;
+}
+
 a,li
 {
     font-size: 24px;
 }
 
-#id_type
+select
 {
     color : black;
 }
+
+#user_name
+ {
+    color: white;
+}
+
 
 h1{
 	font-weight: normal;

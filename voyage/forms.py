@@ -1,6 +1,6 @@
 from django import forms
 from mapwidgets.widgets import GooglePointFieldWidget
-from .models import Port
+from .models import Port,Voyage
 
 import floppyforms.__future__ as forms
 
@@ -14,11 +14,22 @@ class PortForm(forms.ModelForm):
         fields = ['name','position','country','shipyard']
 
         widgets = {
-            'position': PointWidget(attrs={
+            'position': GooglePointFieldWidget(attrs={
             'display_wkt': True,
             'map_srid': 4326,
             'map_width': 700,
             'map_height': 500, })}
+
+class VoyageForm(forms.ModelForm):
+    class Meta:
+        model = Voyage
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['begining_time'].help_text = 'YYYY-MM-DD HH:MM:SS'
+        self.fields['end_time'].help_text = 'YYYY-MM-DD HH:MM:SS'
+
 
 
 

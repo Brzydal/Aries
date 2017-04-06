@@ -15,7 +15,7 @@
 			<div class="row">
 				<li>
 					<div class="col-xs-6">
-						<a href="{{ship.get_absolute_url}}">{{port}}</a>
+						<a href="{{port.get_absolute_url}}">{{port}}</a>
 					</div>
 					<div class="col-xs-3">
 						<a href="{% url 'modify-port' pk=port.pk %}" type="button" class="btn btn-default" >Modify</a>

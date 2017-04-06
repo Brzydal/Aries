@@ -131,9 +131,7 @@ STATIC_URL = '/static/'
 MAP_WIDGETS = {
     "GooglePointFieldWidget": (
         ("zoom", 15),
-        ("mapCenterLocationName", "london"),
-        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'uk'}}),
-        ("markerFitZoom", 12),
+        ("mapCenterLocation", [57.7177013, -16.6300491]),
     ),
     "GOOGLE_MAP_API_KEY": "AIzaSyBsLzO7lckWXomSRWsCap6JuqB3XYMrTNY"
 }

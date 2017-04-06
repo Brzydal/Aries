@@ -12,12 +12,13 @@
 
 <div id="form">
 	<strong><h2>Name: {{port}}</h2></strong>
-	<h3>IMO: {{port.imo}}</h3>
+	<h3>Position: {{port.position}}</h3>
+	<h3>Country: {{port.country}}</h3>
 
 	{% if port.shipyard %}
-	<h3>Active: Yes</h3>
+	<h3>Shipyard Available: Yes</h3>
 	{% else %}
-	<h3>Active: No</h3>
+	<h3>Shipyard Available: No</h3>
 	{% endif%}
 
 </div>
