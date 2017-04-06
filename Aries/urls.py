@@ -17,14 +17,19 @@ from django.conf.urls import url
 from django.contrib import admin
 from profiles.views import IndexView,LoginView, LogoutView, ProfileView, RegisterProfileView
 from voyage.views import (
+    AddPortView,
     AddShipView,
     AddVoyageView,
+    DeletePortView,
     DeleteShipView,
     DeleteVoyageView,
+    ModifyPortView,
     ModifyShipView,
     ModifyVoyageView,
+    PortView,
     ShipView,
     VoyageView,
+    PortsView,
     ShipsView,
     VoyagesView)
 

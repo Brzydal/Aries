@@ -9,7 +9,9 @@ from django.views.generic.edit import (
 from django.views.generic.list import ListView
 from django.shortcuts import render
 
-from .models import Ship,Voyage
+from .forms import PortForm
+from .models import Port,Ship,Voyage
+
 
 # Views to create/modify/display Ships.
 class ShipsView(ListView):
@@ -37,9 +39,10 @@ class PortsView(ListView):
 class PortView(DetailView):
     model = Port
 
+
 class AddPortView(CreateView):
     model = Port
-    fields = '__all__'
+    form_class = PortForm
 
 class ModifyPortView(UpdateView):
     model = Port

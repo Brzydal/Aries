@@ -1,0 +1,15 @@
+{% extends 'voyage/base.html' %}
+
+{% block content%}
+<div id="form">
+
+	<div class="fish" id="fish"></div>
+	<div class="fish" id="fish2"></div>
+
+	<form id="waterform" method="post">
+		{% csrf_token %}
+		<p>Are you sure you want to delete "{{ port }}"?</p>
+		<input type="submit" value="Confirm" />
+	</form>
+</div>
+{% endblock %}
