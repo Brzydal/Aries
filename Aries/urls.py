@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^profile/(?P<pk>(\d)+)$', ProfileView.as_view(), name='profile'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
+
     url(r'^index/$', IndexView.as_view(), name='index'),
 
 
