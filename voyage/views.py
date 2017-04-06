@@ -10,8 +10,8 @@ from django.views import View
 from django.views.generic.list import ListView
 from django.shortcuts import render
 
-from .forms import PortForm,VoyageForm
-from .models import Port,Ship,Voyage
+from .forms import PortForm,VoyageForm,WaypointForm
+from .models import Port,Ship,Voyage,Waypoint
 
 class IndexView(View):
     def get(self, request):
@@ -75,4 +75,23 @@ class ModifyVoyageView(UpdateView):
 class DeleteVoyageView(DeleteView):
     model = Voyage
     success_url = reverse_lazy('voyages')
+
+# Views to create/modify/display Waypoints.
+class WaypointsView(ListView):
+    model = Waypoint
+
+class WaypointView(DetailView):
+    model = Waypoint
+
+class AddWaypointView(CreateView):
+    model = Waypoint
+    form_class = WaypointForm
+
+class ModifyWaypointView(UpdateView):
+    model = Waypoint
+    form_class = WaypointForm
+
+class DeleteWaypointView(DeleteView):
+    model = Waypoint
+    success_url = reverse_lazy('waypoints')
 

@@ -20,19 +20,24 @@ from voyage.views import (
     AddPortView,
     AddShipView,
     AddVoyageView,
+    AddWaypointView,
     DeletePortView,
     DeleteShipView,
     DeleteVoyageView,
+    DeleteWaypointView,
     IndexView,
     ModifyPortView,
     ModifyShipView,
     ModifyVoyageView,
+    ModifyWaypointView,
     PortView,
     ShipView,
     VoyageView,
+    WaypointView,
     PortsView,
     ShipsView,
-    VoyagesView)
+    VoyagesView,
+    WaypointsView)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -61,6 +66,12 @@ urlpatterns = [
     url(r'^add_voyage/$', AddVoyageView.as_view(), name='add-voyage'),
     url(r'^modify_voyage/(?P<pk>(\d)+)/$', ModifyVoyageView.as_view(), name='modify-voyage'),
     url(r'^delete_voyage/(?P<pk>(\d)+)/$', DeleteVoyageView.as_view(), name='delete-voyage'),
+
+    url(r'^waypoints/$', WaypointsView.as_view(), name='waypoints'),
+    url(r'^waypoint/(?P<pk>(\d)+)$', WaypointView.as_view(), name='waypoint'),
+    url(r'^add_waypoint/$', AddWaypointView.as_view(), name='add-waypoint'),
+    url(r'^modify_waypoint/(?P<pk>(\d)+)/$', ModifyWaypointView.as_view(), name='modify-waypoint'),
+    url(r'^delete_waypoint/(?P<pk>(\d)+)/$', DeleteWaypointView.as_view(), name='delete-waypoint'),
 
 
 

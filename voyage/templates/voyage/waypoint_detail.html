@@ -1,0 +1,24 @@
+{% extends 'voyage/base.html' %}
+
+{% block content %}
+
+
+<header>
+	<h1>Waypoint Details</h1>
+</header>
+
+<div class="fish" id="fish"></div>
+<div class="fish" id="fish2"></div>
+
+<div id="form">
+	<strong><h2>Name: {{waypoint}}</h2></strong>
+	<h3>Position: {{waypoint.position}}</h3>
+	<h3>Time: {{waypoint.time}}</h3>
+	<h3>Leg Distance: {{waypoint.leg_distance}}</h3>
+	<h3>Leg Course: {{waypoint.leg_course}}</h3>
+	<h3>Voyage: {{waypoint.voyage}}</h3>
+
+</div>
+
+
+{% endblock %}
