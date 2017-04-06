@@ -3,9 +3,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render,reverse
 from django.views import View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView,UpdateView
 
-from .forms import AuthenticationForm, RegisterProfileForm
+from .forms import AuthenticationForm, RegisterProfileForm,ProfileForm
 from .models import Profile
 
 class RegisterProfileView(View):
@@ -46,29 +46,10 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(reverse('login'))
 
-class ProfileView(DetailView):
+class ProfileView(UpdateView):
     model = Profile
-
-
-# class UserProfileView(View):
-#     def get(self, request):
-#         ctx = {'form': UserProfileForm()}
-#         return render(request, "profiles/user_profile.html", ctx)
-#
-#     def post(self, request):
-#         form = UserProfileForm(data=request.POST)
-#         ctx = {'form': form}
-#         if form.is_valid():
-#             first_name = form.cleaned_data['first_name']
-#             last_name = form.cleaned_data['last_name']
-#             email = form.cleaned_data['email']
-#             favourite_website = form.cleaned_data['favourite_website']
-#         return render(request, "profiles/user_profile.html", ctx)
+    form_class = ProfileForm
 
 class IndexView(View):
     def get(self, request):
         return render(request, 'profiles/index.html', {})
-
-# class ListUsersView(ListView):
-#     template_name = 'exercises/list_users.html'
-#     model = get_profile_model()

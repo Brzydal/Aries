@@ -24,24 +24,21 @@ class RegisterProfileForm(forms.ModelForm):
         return cleaned_data
 
 
-class UserProfileForm(forms.Form):
-    first_name = forms.CharField(max_length=64)
-    last_name = forms.CharField(max_length=64)
-    email = forms.EmailField(help_text='A valid email!', widget=forms.TextInput)
-    favourite_website = forms.URLField(initial='http://', widget=forms.TextInput)
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['username', 'first_name', 'last_name', 'email', 'password']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password'].widget = forms.PasswordInput()
+        self.fields['username'].help_text = None
+        self.fields['username'].widget.attrs['readonly'] = True
 
     def clean(self):
         cleaned_data = super().clean()
-        valid_keys = set(cleaned_data.keys())
-        expected_keys = set(['email', 'first_name', 'last_name'])
-        if valid_keys & expected_keys == expected_keys:
-            expected_value = '{}.{}'.format(
-                cleaned_data['first_name'],
-                cleaned_data['last_name']).lower()
-            actual_value = cleaned_data['email'].split('@')[0].lower()
-
-            if expected_value != actual_value:
-                raise forms.ValidationError('Email should contain name & surname')
+        raw_password = cleaned_data['password']
+        cleaned_data['password'] = make_password(raw_password)
         return cleaned_data
 
 
