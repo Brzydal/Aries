@@ -14,7 +14,7 @@ class PortForm(forms.ModelForm):
         fields = ['name','position','country','shipyard']
 
         widgets = {
-            'position': GooglePointFieldWidget(attrs={
+            'position': PointWidget(attrs={
             'display_wkt': True,
             'map_srid': 4326,
             'map_width': 700,
