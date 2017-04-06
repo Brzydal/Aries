@@ -1,0 +1,30 @@
+{% extends 'voyage/base.html' %}
+
+{% block content %}
+<h3>Voyages:</h3>
+<div class="container" max-width="50%">
+	<div class="col-xs-6">
+		<ul>
+			{% for voyage in object_list %}
+			<div class="row">
+				<li>
+					<div class="col-xs-6">
+						<a href="{{voyage.get_absolute_url}}">{{voyage}}</a>
+					</div>
+					<div class="col-xs-3">
+						<a href="{% url 'modify-voyage' pk=voyage.pk %}" type="button" class="btn btn-default" >Modify</a>
+					</div>
+					<div class="col-xs-3">
+						<a href="{% url 'delete-voyage' pk=voyage.pk %}" type="button" class="btn btn-danger" >Delete</a>
+					</div>
+				</li>
+			</div>
+			{% empty %}
+			No Voyages
+			{% endfor %}
+
+		</ul>
+		<a href="{% url 'add-voyage' %}" type="button" class="btn btn-default" >Add Voyage</a>
+	</div>
+</div>
+{% endblock %}

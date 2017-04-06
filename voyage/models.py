@@ -6,7 +6,7 @@ TYPE = (
     (1,'Fishing'),
     (2,'Container'),
     (3,'Tanker'),
-    (4,'Passnger')
+    (4,'Passanger')
 )
 
 class Ship(models.Model):
@@ -23,11 +23,23 @@ class Ship(models.Model):
     year_of_built = models.IntegerField()
     active = models.BooleanField()
 
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('ship', kwargs={'pk': self.pk})
+
 class Port(models.Model):
     name = models.CharField(max_length = 64)
     position = models.PointField()
     country = models.CharField(max_length = 16)
     shipyard = models.BooleanField()
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('port', kwargs={'pk': self.pk})
 
 class Voyage(models.Model):
     name = models.CharField(max_length = 64)
@@ -37,6 +49,12 @@ class Voyage(models.Model):
     begining_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('voyage', kwargs={'pk': self.pk})
+
 class Waypoint(models.Model):
     name = models.CharField(max_length=64)
     position = models.PointField()
@@ -44,6 +62,12 @@ class Waypoint(models.Model):
     leg_distance = models.FloatField()
     leg_course = models.FloatField()
     voyage = models.ForeignKey(Voyage)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('waypoint', kwargs={'pk': self.pk})
 
 
 

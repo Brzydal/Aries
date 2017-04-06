@@ -16,6 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from profiles.views import IndexView,LoginView, LogoutView, ProfileView, RegisterProfileView
+from voyage.views import (
+    AddVoyageView,
+    DeleteVoyageView,
+    ModifyVoyageView,
+    VoyageView,
+    VoyagesView)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,6 +32,12 @@ urlpatterns = [
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
 
     url(r'^index/$', IndexView.as_view(), name='index'),
+
+    url(r'^voyages/$', VoyagesView.as_view(), name='voyages'),
+    url(r'^voyage/(?P<pk>(\d)+)$', VoyageView.as_view(), name='voyage'),
+    url(r'^add_voyage/$', AddVoyageView.as_view(), name='add-voyage'),
+    url(r'^modify_voyage/(?P<pk>(\d)+)/$', ModifyVoyageView.as_view(), name='modify-voyage'),
+    url(r'^delete_voyage/(?P<pk>(\d)+)/$', DeleteVoyageView.as_view(), name='delete-voyage'),
 
 
 

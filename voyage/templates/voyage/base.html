@@ -1,18 +1,39 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
+
   <title>Aries</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
     <body>
+        <nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <div style="display:inline-block"><img alt="logo" src="{% static 'voyage/pictures/logo.jpg' %}" width="100"></div>
+			  <a class="navbar-brand" href="#">Aries</a>
+			</div>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		      	<li><a href="{% url 'voyages' %}">Voyages</a></li>
+		        <li><a href="#">Search</a></li>
+		      </ul>
+		      {% block search %}
+ 				{% endblock %}
+
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
         {% block content %}
         {% endblock %}
         <script src="https://code.jquery.com/jquery-3.2.1.js"
   			  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   			  crossorigin="anonymous"></script>
-        <script src="{% static 'profiles/js/app.js' %}"></script>
+        <script src="{% static 'voyage/js/app.js' %}"></script>
     </body>
 </html>
