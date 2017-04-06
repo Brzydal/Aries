@@ -1,15 +1,21 @@
 {% extends 'voyage/base.html' %}
 
 {% block content %}
-<h3>Voyages:</h3>
-<div class="container" max-width="50%">
-	<div class="col-xs-6">
-		<ul>
+<header>
+	<h1>Voyages List</h1>
+</header>
+
+<div class="fish" id="fish"></div>
+<div class="fish" id="fish2"></div>
+
+<div id="form"  max-width="100%">
+	<div class="col-xs-4">
+		<ol>
 			{% for voyage in object_list %}
 			<div class="row">
 				<li>
 					<div class="col-xs-6">
-						<a href="{{voyage.get_absolute_url}}">{{voyage}}</a>
+						<a href="{{voyage.get_absolute_url}}">{{ship}}</a>
 					</div>
 					<div class="col-xs-3">
 						<a href="{% url 'modify-voyage' pk=voyage.pk %}" type="button" class="btn btn-default" >Modify</a>
@@ -20,10 +26,10 @@
 				</li>
 			</div>
 			{% empty %}
-			No Voyages
+			No Ships
 			{% endfor %}
 
-		</ul>
+		</ol>
 		<a href="{% url 'add-voyage' %}" type="button" class="btn btn-default" >Add Voyage</a>
 	</div>
 </div>

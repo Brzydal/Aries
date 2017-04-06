@@ -1,0 +1,23 @@
+{% extends 'voyage/base.html' %}
+
+{% block content %}
+
+
+<header>
+	<h1>Ship Details</h1>
+</header>
+
+<div class="fish" id="fish"></div>
+<div class="fish" id="fish2"></div>
+
+<div id="form">
+	<strong><h2>Name: {{voyage}}</h2></strong>
+	<h3>Arrival Port: {{voyage.arrival_port}}</h3>
+	<h3>Departure Port: {{voyage.departure_port}}</h3>
+	<h3>Time of departure: {{voyage.begining_time}}</h3>
+	<h3>Estimated Time of Arrival: {{voyage.end_time}}</h3>
+
+</div>
+
+
+{% endblock %}

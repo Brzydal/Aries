@@ -30,6 +30,25 @@ class DeleteShipView(DeleteView):
     model = Ship
     success_url = reverse_lazy('ships')
 
+# Views to create/modify/display Ports.
+class PortsView(ListView):
+    model = Port
+
+class PortView(DetailView):
+    model = Port
+
+class AddPortView(CreateView):
+    model = Port
+    fields = '__all__'
+
+class ModifyPortView(UpdateView):
+    model = Port
+    fields = '__all__'
+
+class DeletePortView(DeleteView):
+    model = Port
+    success_url = reverse_lazy('voyages')
+
 
 # Views to create/modify/display Voyages.
 class VoyagesView(ListView):
