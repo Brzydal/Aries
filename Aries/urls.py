@@ -17,10 +17,15 @@ from django.conf.urls import url
 from django.contrib import admin
 from profiles.views import IndexView,LoginView, LogoutView, ProfileView, RegisterProfileView
 from voyage.views import (
+    AddShipView,
     AddVoyageView,
+    DeleteShipView,
     DeleteVoyageView,
+    ModifyShipView,
     ModifyVoyageView,
+    ShipView,
     VoyageView,
+    ShipsView,
     VoyagesView)
 
 urlpatterns = [
@@ -33,11 +38,19 @@ urlpatterns = [
 
     url(r'^index/$', IndexView.as_view(), name='index'),
 
+    url(r'^ships/$', ShipsView.as_view(), name='ships'),
+    url(r'^ship/(?P<pk>(\d)+)$', ShipView.as_view(), name='ship'),
+    url(r'^add_ship/$', AddShipView.as_view(), name='add-ship'),
+    url(r'^modify_ship/(?P<pk>(\d)+)/$', ModifyShipView.as_view(), name='modify-ship'),
+    url(r'^delete_ship/(?P<pk>(\d)+)/$', DeleteShipView.as_view(), name='delete-ship'),
+
     url(r'^voyages/$', VoyagesView.as_view(), name='voyages'),
     url(r'^voyage/(?P<pk>(\d)+)$', VoyageView.as_view(), name='voyage'),
     url(r'^add_voyage/$', AddVoyageView.as_view(), name='add-voyage'),
     url(r'^modify_voyage/(?P<pk>(\d)+)/$', ModifyVoyageView.as_view(), name='modify-voyage'),
     url(r'^delete_voyage/(?P<pk>(\d)+)/$', DeleteVoyageView.as_view(), name='delete-voyage'),
+
+
 
 
 

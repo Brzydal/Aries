@@ -9,8 +9,29 @@ from django.views.generic.edit import (
 from django.views.generic.list import ListView
 from django.shortcuts import render
 
-from .models import Voyage
+from .models import Ship,Voyage
 
+# Views to create/modify/display Ships.
+class ShipsView(ListView):
+    model = Ship
+
+class ShipView(DetailView):
+    model = Ship
+
+class AddShipView(CreateView):
+    model = Ship
+    fields = '__all__'
+
+class ModifyShipView(UpdateView):
+    model = Ship
+    fields = '__all__'
+
+class DeleteShipView(DeleteView):
+    model = Ship
+    success_url = reverse_lazy('ships')
+
+
+# Views to create/modify/display Voyages.
 class VoyagesView(ListView):
     model = Voyage
 
@@ -28,4 +49,4 @@ class ModifyVoyageView(UpdateView):
 class DeleteVoyageView(DeleteView):
     model = Voyage
     success_url = reverse_lazy('voyages')
-# Create your views here.
+

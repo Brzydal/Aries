@@ -1,12 +1,14 @@
 from django.db.models.fields import Field
 from django.db import models
+from django.urls import reverse
 from django.contrib.gis.db import models
 
 TYPE = (
     (1,'Fishing'),
     (2,'Container'),
     (3,'Tanker'),
-    (4,'Passanger')
+    (4,'Passanger'),
+    (5,'Sailing'),
 )
 
 class Ship(models.Model):
