@@ -44,6 +44,12 @@ urlpatterns = [
     url(r'^modify_ship/(?P<pk>(\d)+)/$', ModifyShipView.as_view(), name='modify-ship'),
     url(r'^delete_ship/(?P<pk>(\d)+)/$', DeleteShipView.as_view(), name='delete-ship'),
 
+    url(r'^ports/$', PortsView.as_view(), name='ports'),
+    url(r'^port/(?P<pk>(\d)+)$', PortView.as_view(), name='port'),
+    url(r'^add_port/$', AddPortView.as_view(), name='add-port'),
+    url(r'^modify_port/(?P<pk>(\d)+)/$', ModifyPortView.as_view(), name='modify-port'),
+    url(r'^delete_port/(?P<pk>(\d)+)/$', DeletePortView.as_view(), name='delete-port'),
+
     url(r'^voyages/$', VoyagesView.as_view(), name='voyages'),
     url(r'^voyage/(?P<pk>(\d)+)$', VoyageView.as_view(), name='voyage'),
     url(r'^add_voyage/$', AddVoyageView.as_view(), name='add-voyage'),
