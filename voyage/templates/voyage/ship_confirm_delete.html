@@ -1,11 +1,6 @@
 {% extends 'voyage/base.html' %}
 
-{% block content %}
-
-<header>
-	<h1>Add/Modify Ship</h1>
-</header>
-
+{% block content%}
 <div id="form">
 
 	<div class="fish" id="fish"></div>
@@ -13,10 +8,8 @@
 
 	<form id="waterform" method="post">
 		{% csrf_token %}
-		{{form}}
-
-		<input type="submit" value="Add/Modify" />
+		<p>Are you sure you want to delete "{{ ship }}"?</p>
+		<input type="submit" value="Confirm" />
 	</form>
 </div>
-
 {% endblock %}

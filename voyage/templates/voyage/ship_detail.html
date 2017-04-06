@@ -1,8 +1,32 @@
 {% extends 'voyage/base.html' %}
 
 {% block content %}
-  <h2>Name: {{ship}}</h2>
-  <h3>Flag: {{ship.flag}}</h3>
+
+
+<header>
+	<h1>Ship Details</h1>
+</header>
+
+<div class="fish" id="fish"></div>
+<div class="fish" id="fish2"></div>
+
+<div id="form">
+	<h2>Name: {{ship}}</h2>
+	<h3>IMO: {{ship.imo}}</h3>
+	<h3>MMSI: {{ship.mmsi}}</h3>
+	<h3>Call Sign: {{ship.call_sign}}</h3>
+	<h3>Gross Tonnage: {{ship.gross_tonnage}}</h3>
+	<h3>Deadweight: {{ship.deadweight}}</h3>
+	<h3>Length Overall: {{ship.length_overall}}</h3>
+	<h3>Breadth: {{ship.breadth}}</h3>
+	<h3>Year of Built: {{ship.year_of_built}}</h3>
+	{% if ship.active %}
+	<h3>Active: Yes</h3>
+	{% else %}
+	<h3>Active: No</h3>
+	{% endif%}
+
+</div>
 
 
 {% endblock %}

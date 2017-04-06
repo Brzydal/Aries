@@ -1,10 +1,16 @@
 {% extends 'voyage/base.html' %}
 
 {% block content %}
-<h3>Ships:</h3>
-<div class="container" max-width="50%">
-	<div class="col-xs-6">
-		<ul>
+<header>
+	<h1>Ship List</h1>
+</header>
+
+<div class="fish" id="fish"></div>
+<div class="fish" id="fish2"></div>
+
+<div id="form"  max-width="100%">
+	<div class="col-xs-4">
+		<ol>
 			{% for ship in object_list %}
 			<div class="row">
 				<li>
@@ -23,7 +29,7 @@
 			No Ships
 			{% endfor %}
 
-		</ul>
+		</ol>
 		<a href="{% url 'add-ship' %}" type="button" class="btn btn-default" >Add Ship</a>
 	</div>
 </div>
