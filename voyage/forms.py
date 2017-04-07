@@ -1,4 +1,5 @@
 from django import forms
+from datetimewidget.widgets import DateTimeWidget
 from mapwidgets.widgets import GooglePointFieldWidget
 from .models import Port,Voyage,Waypoint
 
@@ -14,7 +15,7 @@ class PortForm(forms.ModelForm):
         fields = ['name','position','country','shipyard']
 
         widgets = {
-            'position': PointWidget(attrs={
+            'position': GooglePointFieldWidget(attrs={
             'display_wkt': True,
             'map_srid': 4326,
             'map_width': 700,
@@ -25,10 +26,16 @@ class VoyageForm(forms.ModelForm):
         model = Voyage
         fields = '__all__'
 
+        widgets = {
+            'begining_time': DateTimeWidget(attrs={'id': "begining_time"}),
+            'end_time': DateTimeWidget(attrs={'id': "end_time"}),
+        }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['begining_time'].help_text = 'YYYY-MM-DD HH:MM:SS'
         self.fields['end_time'].help_text = 'YYYY-MM-DD HH:MM:SS'
+
 
 class WaypointForm(forms.ModelForm):
 
@@ -41,7 +48,10 @@ class WaypointForm(forms.ModelForm):
             'display_wkt': True,
             'map_srid': 4326,
             'map_width': 700,
-            'map_height': 500, })}
+            'map_height': 500, }),
+
+            'time': DateTimeWidget(attrs={'id': "waypoint_time"}),
+        }
 
 
 

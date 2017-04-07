@@ -7,8 +7,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.js"  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="  crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="{% static 'voyage/css/style.css' %}">
+	{{ form.media }}
 	{% block extra_js %}{% endblock %}
 </head>
     <body>
@@ -44,9 +46,7 @@
 
         {% block content %}
         {% endblock %}
-        <script src="https://code.jquery.com/jquery-3.2.1.js"
-  			  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  			  crossorigin="anonymous"></script>
+
 
 		<script src="floppyforms/static/floppyforms/js/MapWidget.js"></script>
         <script src="{% static 'voyage/js/app.js' %}"></script>

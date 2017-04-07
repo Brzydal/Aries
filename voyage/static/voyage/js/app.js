@@ -49,4 +49,16 @@ $(document).on("google_point_map_widget:marker_delete", function (e, lat, lng, l
     console.log(mapWrapID); // map widget wrapper element ID
 })
 
+
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+  });
+
+
 });

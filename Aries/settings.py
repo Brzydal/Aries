@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'datetimewidget',
     'mapwidgets',
     'floppyforms',
     'voyage',
@@ -130,8 +131,8 @@ STATIC_URL = '/static/'
 
 MAP_WIDGETS = {
     "GooglePointFieldWidget": (
-        ("zoom", 15),
-        ("mapCenterLocation", [57.7177013, -16.6300491]),
+        ("zoom", 10),
+        ("mapCenterLocation", [54.5, 18.5]),
     ),
     "GOOGLE_MAP_API_KEY": "AIzaSyBsLzO7lckWXomSRWsCap6JuqB3XYMrTNY"
 }

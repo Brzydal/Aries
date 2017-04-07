@@ -4,7 +4,7 @@
 
 
 <header>
-	<h1>Ship Details</h1>
+	<h1>Voyage Details</h1>
 </header>
 
 <div class="fish" id="fish"></div>
@@ -16,6 +16,16 @@
 	<h3>Departure Port: {{voyage.departure_port}}</h3>
 	<h3>Time of departure: {{voyage.begining_time}}</h3>
 	<h3>Estimated Time of Arrival: {{voyage.end_time}}</h3>
+
+	<h1>Waypoints List</h1>
+		<ol>
+			{% for waypoint in voyage.waypoint_set.all %}
+				<li><a href="{% url 'waypoint' pk=waypoint.pk %}">{{waypoint}}</a></li>
+			{% empty %}
+				NO WAYPOINTS
+			{% endfor %}
+		</ol>
+
 
 </div>
 
