@@ -20,6 +20,14 @@ a,li
     font-size: 24px;
 }
 
+p
+{
+    font-size: 18px;
+    text-indent: 2cm;
+    margin: 2cm 2cm 2cm 2cm;
+    text-align: justify;
+}
+
 select
 {
     color : black;
@@ -28,6 +36,13 @@ select
 #user_name
  {
     color: white;
+}
+
+#picture
+{
+    height:600px;
+    display: block;
+    margin: auto;
 }
 
 

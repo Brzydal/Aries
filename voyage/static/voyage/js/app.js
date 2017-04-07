@@ -49,16 +49,16 @@ $(document).on("google_point_map_widget:marker_delete", function (e, lat, lng, l
     console.log(mapWrapID); // map widget wrapper element ID
 })
 
+//Ajax for NASA Api
+$.ajax({url: "https://api.nasa.gov/planetary/apod?api_key=ZGAfeRDeK55E65GxGcPXVXQVsIsgz8aW95jlq3Sj",
+      success: function(result){$("#picture").attr('src',result.url);},
+      error: function(result){$("#picture").attr('alt','Picture not loaded');}
+});
 
-  $(function() {
-    $( ".datepicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "1900:2012",
-      // You can put more options here.
-
-    });
-  });
+//$.ajax({url: "https://api.nasa.gov/EPIC/api/natural/images?api_key=ZGAfeRDeK55E65GxGcPXVXQVsIsgz8aW95jlq3Sj",
+//      success: function(result){$("#picture").attr('src',result.url);},
+//      error: function(result){$("#picture").attr('alt','Picture not loaded');}
+//});
 
 
 });
