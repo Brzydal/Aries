@@ -56,9 +56,11 @@ $.ajax({url: "https://api.nasa.gov/planetary/apod?api_key=ZGAfeRDeK55E65GxGcPXVX
 });
 
 //$.ajax({url: "https://api.nasa.gov/EPIC/api/natural/images?api_key=ZGAfeRDeK55E65GxGcPXVXQVsIsgz8aW95jlq3Sj",
-//      success: function(result){$("#picture").attr('src',result.url);},
-//      error: function(result){$("#picture").attr('alt','Picture not loaded');}
+//      success: function(result){$("#argh").html('Jupi');,
+//      error: function(result){$("#argh").html('Grrrrr!!!');}
 //});
+
+
 
 
 });
