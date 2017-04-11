@@ -27,6 +27,13 @@ class ShipForm(forms.ModelForm):
         else:
             return value
 
+    def clean_mmsi(self): # Validation for MMSI number
+        value = self.cleaned_data['mmsi']
+        if int(value[0])<2 or int(value[0])>7 or len(value) != 9:
+            raise ValidationError('This is not a proper MMSI number.')
+        else:
+            return value
+
 class PortForm(forms.ModelForm):
 
     class Meta:
