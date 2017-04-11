@@ -10,7 +10,7 @@ from django.views import View
 from django.views.generic.list import ListView
 from django.shortcuts import render
 
-from .forms import PortForm,VoyageForm,WaypointForm
+from .forms import PortForm, ShipForm, VoyageForm,WaypointForm
 from .models import Port,Ship,Voyage,Waypoint
 
 class IndexView(View):
@@ -26,7 +26,7 @@ class ShipView(DetailView):
 
 class AddShipView(CreateView):
     model = Ship
-    fields = '__all__'
+    form_class = ShipForm
 
 class ModifyShipView(UpdateView):
     model = Ship

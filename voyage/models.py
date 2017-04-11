@@ -13,8 +13,8 @@ TYPE = (
 
 class Ship(models.Model):
     name = models.CharField(max_length = 32)
-    imo = models.CharField(max_length = 7, unique=True,primary_key=True)
-    mmsi = models.CharField(max_length = 9,unique=True)
+    imo = models.CharField('IMO',max_length = 7, unique=True,primary_key=True)
+    mmsi = models.CharField('MMSI',max_length = 9,unique=True)
     call_sign = models.CharField(max_length=5,unique=True)
     flag = models.CharField(max_length =16)
     type = models.IntegerField(choices=TYPE)
