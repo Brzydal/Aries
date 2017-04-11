@@ -1,7 +1,10 @@
+
+from django_countries.fields import CountryField
 from django.db.models.fields import Field
 from django.db import models
 from django.urls import reverse
 from django.contrib.gis.db import models
+
 
 TYPE = (
     (1,'Fishing'),
@@ -16,7 +19,7 @@ class Ship(models.Model):
     imo = models.CharField('IMO',max_length = 7, unique=True,primary_key=True)
     mmsi = models.CharField('MMSI',max_length = 9,unique=True)
     call_sign = models.CharField(max_length=5,unique=True)
-    flag = models.CharField(max_length =16)
+    flag = CountryField()
     type = models.IntegerField(choices=TYPE)
     gross_tonnage = models.FloatField()
     deadweight = models.FloatField()
@@ -34,7 +37,7 @@ class Ship(models.Model):
 class Port(models.Model):
     name = models.CharField(max_length = 64)
     position = models.PointField()
-    country = models.CharField(max_length = 16)
+    country = CountryField()
     shipyard = models.BooleanField()
 
     def __str__(self):

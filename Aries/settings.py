@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'datetimewidget',
     'mapwidgets',
     'floppyforms',
+    'django_countries',
     'voyage',
     'profiles',
 ]
