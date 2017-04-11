@@ -7,11 +7,20 @@ from django.contrib.gis.db import models
 
 
 TYPE = (
-    (1,'Fishing'),
+    (1,'General Cargo'),
     (2,'Container'),
-    (3,'Tanker'),
-    (4,'Passanger'),
-    (5,'Sailing'),
+    (3,'Bulk Carrier'),
+    (4,'RO-RO'),
+    (5,'Product Tanker'),
+    (6,'Crude Tanker'),
+    (7,'LNG Tanker'),
+    (8,'Chemical Tanker'),
+    (9,'Heavy Lift'),
+    (10,'Sailing'),
+    (11,'Passenger'),
+    (12,'Tug'),
+    (13,'Fishing'),
+    (14,'Other'),
 )
 
 class Ship(models.Model):
