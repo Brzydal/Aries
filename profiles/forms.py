@@ -47,6 +47,9 @@ class ProfileForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         raw_password = cleaned_data['password']
+        con_password = cleaned_data['confirm_password']
+        if raw_password != con_password:
+            raise ValidationError('Password does not match Confirm Password')
         cleaned_data['password'] = make_password(raw_password)
         return cleaned_data
 

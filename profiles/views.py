@@ -49,6 +49,6 @@ class LogoutView(View):
 class ProfileView(UpdateView):
     model = Profile
     form_class = ProfileForm
-    success_url = '/index/'
+    # success_url = '/profile/'
 
 
