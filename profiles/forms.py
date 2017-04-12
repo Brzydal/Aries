@@ -32,6 +32,7 @@ class RegisterProfileForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    confirm_password = forms.CharField(label='Confirm Password')
     class Meta:
         model = Profile
         fields = ['username', 'first_name', 'last_name', 'email', 'password']
@@ -39,6 +40,7 @@ class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password'].widget = forms.PasswordInput()
+        self.fields['confirm_password'].widget = forms.PasswordInput()
         self.fields['username'].help_text = None
         self.fields['username'].widget.attrs['readonly'] = True
 
