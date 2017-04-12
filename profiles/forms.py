@@ -1,13 +1,15 @@
 from django import forms
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate
+from django.core.exceptions import ValidationError
 
 from .models import Profile 
 
 
 
 class RegisterProfileForm(forms.ModelForm):
-    
+    confirm_password = forms.CharField(label='Confirm Password')
+
     class Meta:
         model = Profile
         fields = ['username', 'first_name', 'last_name', 'email', 'password']
@@ -15,13 +17,18 @@ class RegisterProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password'].widget = forms.PasswordInput()
+        self.fields['confirm_password'].widget = forms.PasswordInput()
         self.fields['username'].help_text = None
     
     def clean(self):
         cleaned_data = super().clean()
         raw_password = cleaned_data['password']
+        con_password = cleaned_data['confirm_password']
+        if raw_password != con_password:
+            raise ValidationError('Password does not match Confirm Password')
         cleaned_data['password'] = make_password(raw_password)
         return cleaned_data
+
 
 
 class ProfileForm(forms.ModelForm):
