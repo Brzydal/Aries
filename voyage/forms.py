@@ -5,7 +5,6 @@ import floppyforms.__future__ as forms # import for widget for Waypoint
 from mapwidgets.widgets import GooglePointFieldWidget # import for widget for Port
 
 from .models import Port, Ship, Voyage,Waypoint
-from .validators import imo_number
 
 # Creation of widget for Waypoints
 class PointWidget(forms.gis.PointWidget, forms.gis.BaseGMapWidget):
