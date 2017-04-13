@@ -4,46 +4,6 @@
 
 {% block content %}
 
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
-
-<script>
-    function initialize() {
-        var homeLatlng = new google.maps.LatLng(51.476706,0);
-        var myOptions = {
-            zoom: 15,
-            center: homeLatlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"), myOptions);
-
-        // create an array of coordinates
-        var arrCoords = [
-            new google.maps.LatLng(51.482238,0.001581),
-            new google.maps.LatLng(51.473364,0.011966),
-            new google.maps.LatLng(51.471974,-0.000651),
-            new google.maps.LatLng(51.472108,-0.002196),
-            new google.maps.LatLng(51.474995,-0.003827),
-            new google.maps.LatLng(51.476492,-0.005629),
-            new google.maps.LatLng(51.477855,-0.006058),
-            new google.maps.LatLng(51.478443,-0.007045),
-            new google.maps.LatLng(51.479298,-0.007861),
-            new google.maps.LatLng(51.481202,-0.002136),
-            new google.maps.LatLng(51.481577,-0.0022)
-        ];
-
-        // draw the route on the map
-        var route = new google.maps.Polyline({
-            path: arrCoords,
-            strokeColor: "#00FF00",
-            strokeOpacity: 1.0,
-            strokeWeight: 4,
-            geodesic: false,
-            map: map
-        });
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-</script>
 
 <header>
 	<h1>Voyage Details</h1>
@@ -62,7 +22,7 @@
 	<h1>Waypoints List</h1>
 		<ol>
 			{% for waypoint in voyage.waypoint_set.all %}
-				<li><a href="{% url 'waypoint' pk=waypoint.pk %}">{{waypoint}}</a></li>
+				<li><a href="{% url 'waypoint' pk=waypoint.pk %}">{{waypoint}}</a>LAT:{{waypoint.position.y}}, LONG:{{waypoint.position.x}}</li>
 			{% empty %}
 				NO WAYPOINTS
 			{% endfor %}
@@ -70,22 +30,41 @@
 
 </div>
 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+
+<script>
+    function initialize() {
+        var homeLatlng = new google.maps.LatLng({{voyage.departure_port.position.y|floatformat:"6"}},{{voyage.departure_port.position.x|floatformat:"6"}});
+        <!--var homeLatlng = new google.maps.LatLng(0,0)-->
+        var myOptions = {
+            zoom: 15,
+            center: homeLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+        // create an array of coordinates
+
+        var arrCoords = [];
+        {% for waypoint in voyage.waypoint_set.all %}
+        	arrCoords.push(new google.maps.LatLng({{waypoint.position.y|floatformat:"6"}},{{waypoint.position.x|floatformat:"6"}}))
+  		{% endfor %}
+
+        // draw the route on the map
+        var route = new google.maps.Polyline({
+            path: arrCoords,
+            strokeColor: "#00FF00",
+            strokeOpacity: 1.0,
+            strokeWeight: 4,
+            geodesic: false,
+            map: map
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
 <div id="map"></div>
-    <!--<script>-->
-      <!--function initMap() {-->
-        <!--var uluru = {lat: -25.363, lng: 131.044};-->
-        <!--var map = new google.maps.Map(document.getElementById('map'), {-->
-          <!--zoom: 4,-->
-          <!--center: uluru-->
-        <!--});-->
-        <!--var marker = new google.maps.Marker({-->
-          <!--position: uluru,-->
-          <!--map: map-->
-        <!--});-->
-      <!--}-->
-    <!--</script>-->
-    <!--<script async defer-->
-    <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsLzO7lckWXomSRWsCap6JuqB3XYMrTNY&callback=initMap">-->
-    <!--</script>-->
+
 {% endblock %}
 

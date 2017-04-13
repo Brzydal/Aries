@@ -61,6 +61,6 @@ $.ajax({url: "https://api.nasa.gov/EPIC/api/natural/images?api_key=ZGAfeRDeK55E6
 });
 
 
-
+//Script to display map with a track
 
 });

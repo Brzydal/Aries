@@ -69,7 +69,7 @@ class WaypointForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'position': PointWidget(attrs={
+            'position': GooglePointFieldWidget(attrs={
             'display_wkt': True,
             'map_srid': 4326,
             'map_width': 700,
