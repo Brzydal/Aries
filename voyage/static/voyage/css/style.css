@@ -7,6 +7,11 @@ body, html{
 	font-family: 'Sniglet', cursive;
 }
 
+#map {
+        height: 400px;
+        width: 100%;
+       }
+
 
 .nav,.navbar-brand
 {
