@@ -19,8 +19,9 @@
 	<h3>Time of departure: {{voyage.begining_time}}</h3>
 	<h3>Estimated Time of Arrival: {{voyage.end_time}}</h3>
 
-	<h1>Waypoints List</h1>
-		<ol>
+	<h1>Waypoints</h1>
+	<button type="button" id="toggle" class="btn btn-primary">Map/List</button>
+		<ol id="list" class="hidden">
 			{% for waypoint in voyage.waypoint_set.all %}
 				<li><a href="{% url 'waypoint' pk=waypoint.pk %}">{{waypoint}}</a>LAT:{{waypoint.position.y}}, LONG:{{waypoint.position.x}}</li>
 			{% empty %}
@@ -37,9 +38,9 @@
         var homeLatlng = new google.maps.LatLng({{voyage.departure_port.position.y|floatformat:"6"}},{{voyage.departure_port.position.x|floatformat:"6"}});
         <!--var homeLatlng = new google.maps.LatLng(0,0)-->
         var myOptions = {
-            zoom: 15,
+            zoom: 5,
             center: homeLatlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.SATELLITE
         };
         var map = new google.maps.Map(document.getElementById("map"), myOptions);
 
@@ -53,7 +54,7 @@
         // draw the route on the map
         var route = new google.maps.Polyline({
             path: arrCoords,
-            strokeColor: "#00FF00",
+            strokeColor: "#FF0000",
             strokeOpacity: 1.0,
             strokeWeight: 4,
             geodesic: false,

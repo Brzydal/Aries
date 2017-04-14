@@ -61,15 +61,19 @@ $.ajax({url: "https://api.nasa.gov/EPIC/api/natural/images?api_key=ZGAfeRDeK55E6
 });
 
 
-//Script to display map with a track
+//In Port View writing a name together with search in google maps
 
 var port1 = $('#id_name');
 var port2 = $('#position-mw-google-address-input');
 
 port1.on("keyup",function () {
-
 port2.val(port1.val())
+});
 
+//In Voyage View toggling between map and list
+$('#toggle').click(function(){
+    $('#map').toggleClass("hidden");
+    $('#list').toggleClass("hidden");
 });
 
 });
