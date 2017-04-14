@@ -49,6 +49,14 @@ select
     margin: auto;
 }
 
+input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin:20px;
+  transform: scale(1.5)
+
+}
 
 h1{
 	font-weight: normal;
@@ -188,6 +196,7 @@ label{
 	width: 566px;
 	padding-top: 2px;
 }
+
 
 .formgroup{
 	background-image: url('http://www.geertjanhendriks.nl/codepen/form/pixel.gif');

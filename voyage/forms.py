@@ -52,14 +52,14 @@ class VoyageForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'begining_time': DateTimeWidget(attrs={'id': "begining_time"}),
-            'end_time': DateTimeWidget(attrs={'id': "end_time"}),
+            'etd': DateTimeWidget(attrs={'id': "etd"}),
+            'eta': DateTimeWidget(attrs={'id': "eta"}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['begining_time'].help_text = 'YYYY-MM-DD HH:MM:SS'
-        self.fields['end_time'].help_text = 'YYYY-MM-DD HH:MM:SS'
+        self.fields['etd'].help_text = 'YYYY-MM-DD HH:MM:SS'
+        self.fields['eta'].help_text = 'YYYY-MM-DD HH:MM:SS'
 
 
 class WaypointForm(forms.ModelForm):

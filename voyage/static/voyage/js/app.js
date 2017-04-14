@@ -63,4 +63,13 @@ $.ajax({url: "https://api.nasa.gov/EPIC/api/natural/images?api_key=ZGAfeRDeK55E6
 
 //Script to display map with a track
 
+var port1 = $('#id_name');
+var port2 = $('#position-mw-google-address-input');
+
+port1.on("keyup",function () {
+
+port2.val(port1.val())
+
+});
+
 });

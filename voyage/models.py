@@ -57,11 +57,11 @@ class Port(models.Model):
 
 class Voyage(models.Model):
     name = models.CharField(max_length = 64)
+    departure_port = models.OneToOneField(Port, related_name='departure_port')
+    etd = models.DateTimeField('Estimated Time of Departure')
     arrival_port = models.OneToOneField(Port,related_name='arrival_port')
-    departure_port= models.OneToOneField(Port, related_name='departure_port')
+    eta = models.DateTimeField('Estimated Time of Arrival')
     distance = models.FloatField()
-    begining_time = models.DateTimeField()
-    end_time = models.DateTimeField()
 
     def __str__(self):
         return self.name
