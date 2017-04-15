@@ -84,12 +84,8 @@
 					<tr>
 					  <td><a href="{% url 'waypoint' pk=waypoint.pk %}">{{waypoint}}</a></td>
 					  <td class="waypoint_td">{{waypoint.time}}</td>
-
 					  <td class="waypoint_td">{{waypoint.position.y|lat}}</td>
-
-
-
-					  <td class="waypoint_td">{{waypoint.position.x|floatformat:"6"}}</td>
+					  <td class="waypoint_td">{{waypoint.position.x|long}}</td>
 					  <td class="waypoint_td">{{waypoint.leg_distance}} Nm</td>
 					  <td class="waypoint_td">{{waypoint.leg_course}} &deg;</td>
 					  <td class="waypoint_td">
