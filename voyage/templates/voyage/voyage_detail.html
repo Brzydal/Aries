@@ -55,7 +55,7 @@
 		<h3>Estimated Time of Arrival:<br> {{voyage.eta}}</h3>
 
 		 <button type="button" id="toggle" class="btn btn-primary">Map/List</button>
-
+		 <a href="{% url 'add-waypoint' %}" type="button" class="btn btn-primary" >Add Waypoint</a>
 	  </div>
 	</div>
 	<div class="col-xs-9">
@@ -70,6 +70,7 @@
 					  <th class="waypoint_th">Longitude</th>
 					  <th class="waypoint_th">Distance</th>
 					  <th class="waypoint_th">Course</th>
+					  <th class="waypoint_th">#</th>
 					</tr>
 				  </thead>
 				</table>
@@ -82,10 +83,18 @@
 					<tr>
 					  <td><a href="{% url 'waypoint' pk=waypoint.pk %}">{{waypoint}}</a></td>
 					  <td class="waypoint_td">{{waypoint.time}}</td>
-					  <td class="waypoint_td">{{waypoint.position.y}}</td>
-					  <td class="waypoint_td">{{waypoint.position.x}}</td>
+						{% if waypoint.position.y > 0 %}
+					  <td class="waypoint_td">{{waypoint.position.y|floatformat:"6"}} N</td>
+						{% else %}
+						<td class="waypoint_td">{{waypoint.position.y|floatformat:"6"}} S</td>
+						{% endif %}
+					  <td class="waypoint_td">{{waypoint.position.x|floatformat:"6"}}</td>
 					  <td class="waypoint_td">{{waypoint.leg_distance}} Nm</td>
 					  <td class="waypoint_td">{{waypoint.leg_course}} &deg;</td>
+					  <td class="waypoint_td">
+						  <a href="{% url 'modify-waypoint' pk=waypoint.pk %}" type="button" class="btn btn-default" >Modify</a>
+						  <a href="{% url 'delete-waypoint' pk=waypoint.pk %}" type="button" class="btn btn-danger" >Delete</a>
+					  </td>
 					</tr>
 				  {% empty %}
 					NO WAYPOINTS

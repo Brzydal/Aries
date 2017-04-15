@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'datetimewidget',
+    'mathfilters',
     'mapwidgets',
     'floppyforms',
     'django_countries',
