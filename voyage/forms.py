@@ -1,14 +1,14 @@
 from django import forms
 from datetimewidget.widgets import DateTimeWidget #import for Datetimepickers
 from django.core.exceptions import ValidationError
-import floppyforms.__future__ as forms # import for widget for Waypoint
+# import floppyforms.__future__ as forms # import for widget for Waypoint
 from mapwidgets.widgets import GooglePointFieldWidget # import for widget for Port
 
 from .models import Port, Ship, Voyage,Waypoint
 
-# Creation of widget for Waypoints
-class PointWidget(forms.gis.PointWidget, forms.gis.BaseGMapWidget):
-    google_maps_api_key = 'AIzaSyBsLzO7lckWXomSRWsCap6JuqB3XYMrTNY'
+# Creation of widget for Waypoints - floppyforms
+# class PointWidget(forms.gis.PointWidget, forms.gis.BaseGMapWidget):
+#     google_maps_api_key = 'AIzaSyBsLzO7lckWXomSRWsCap6JuqB3XYMrTNY'
 
 class ShipForm(forms.ModelForm):
 

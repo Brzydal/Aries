@@ -18,7 +18,7 @@
         // create an array of coordinates
 
         var arrCoords = [];
-        {% for waypoint in voyage.waypoint_set.all %}
+        {% for waypoint in voyage.sorted_waypoint_set.all %}
         	arrCoords.push(new google.maps.LatLng({{waypoint.position.y|floatformat:"6"}},{{waypoint.position.x|floatformat:"6"}}))
   		{% endfor %}
 
@@ -80,7 +80,7 @@
 				<table cellpadding="0" cellspacing="0" border="0" class="waypoint_table">
 				  <tbody>
 				  {% load voyage_filters %}
-				  {% for waypoint in voyage.waypoint_set.all %}
+				  {% for waypoint in voyage.sorted_waypoint_set.all %}
 					<tr>
 					  <td><a href="{% url 'waypoint' pk=waypoint.pk %}">{{waypoint}}</a></td>
 					  <td class="waypoint_td">{{waypoint.time}}</td>

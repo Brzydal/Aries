@@ -50,15 +50,15 @@ $(document).on("google_point_map_widget:marker_delete", function (e, lat, lng, l
 })
 
 //Ajax for NASA Api
-//$.ajax({url: "https://api.nasa.gov/planetary/apod?api_key=ZGAfeRDeK55E65GxGcPXVXQVsIsgz8aW95jlq3Sj",
-//      success: function(result){$("#picture").attr('src',result.url);},
-//      error: function(result){$("#picture").attr('alt','Picture not loaded');}
-//});
-
-$.ajax({url: "https://api.nasa.gov/EPIC/api/natural/images?api_key=ZGAfeRDeK55E65GxGcPXVXQVsIsgz8aW95jlq3Sj",
-      success: function(result){$("#argh").text('Jupi');},
-      error: function(result){$("#argh").text('Grrrrr!!!');}
+$.ajax({url: "https://api.nasa.gov/planetary/apod?api_key=ZGAfeRDeK55E65GxGcPXVXQVsIsgz8aW95jlq3Sj",
+      success: function(result){$("#picture").attr('src',result.url);},
+      error: function(result){$("#picture").attr('alt','Picture not loaded');}
 });
+
+//$.ajax({url: "https://api.nasa.gov/EPIC/api/natural/images?api_key=ZGAfeRDeK55E65GxGcPXVXQVsIsgz8aW95jlq3Sj",
+//      success: function(result){$("#argh").text('Jupi');},
+//      error: function(result){$("#argh").text('Grrrrr!!!');}
+//});
 
 
 //In Port View writing a name together with search in google maps

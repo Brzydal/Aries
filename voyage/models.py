@@ -69,6 +69,10 @@ class Voyage(models.Model):
     def get_absolute_url(self):
         return reverse('voyage', kwargs={'pk': self.pk})
 
+    @property
+    def sorted_waypoint_set(self):
+        return self.waypoint_set.order_by('time')
+
 class Waypoint(models.Model):
     name = models.CharField(max_length=64)
     position = models.PointField()
@@ -82,6 +86,8 @@ class Waypoint(models.Model):
 
     def get_absolute_url(self):
         return reverse('waypoint', kwargs={'pk': self.pk})
+
+
 
 
 
