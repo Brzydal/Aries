@@ -38,6 +38,7 @@ from voyage.views import (
     ShipsView,
     VoyagesView,
     WaypointsView)
+from meteo.views import MeteoView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -72,6 +73,8 @@ urlpatterns = [
     url(r'^add_waypoint/$', AddWaypointView.as_view(), name='add-waypoint'),
     url(r'^modify_waypoint/(?P<pk>(\d)+)/$', ModifyWaypointView.as_view(), name='modify-waypoint'),
     url(r'^delete_waypoint/(?P<pk>(\d)+)/$', DeleteWaypointView.as_view(), name='delete-waypoint'),
+
+    url(r'^meteo/$', MeteoView.as_view(), name='meteo'),
 
 
 

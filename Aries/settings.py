@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # 'floppyforms',
     'django_countries',
     'voyage',
+    'meteo',
     'profiles',
 ]
 
