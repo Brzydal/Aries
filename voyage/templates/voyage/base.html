@@ -10,6 +10,11 @@
   <script src="https://code.jquery.com/jquery-3.2.1.js"  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="  crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="{% static 'voyage/css/style.css' %}">
+
+	{% block css %}
+	{% endblock %}
+
+
 	{{ form.media }}
 
 	<!--{% block extra_js %}{% endblock %}-->
@@ -52,6 +57,9 @@
 
 		<!--<script src="floppyforms/static/floppyforms/js/MapWidget.js"></script>-->
         <script src="{% static 'voyage/js/app.js' %}"></script>
+
+		{% block js %}
+		{% endblock %}
 
     </body>
 </html>
