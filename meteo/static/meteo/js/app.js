@@ -2,6 +2,7 @@
 /* Does your browser support geolocation? */
 if ("geolocation" in navigator) {
   $('.js-geolocation').show();
+  $('.js-geolocation').toggleClass("btn-success");
 } else {
   $('.js-geolocation').hide();
 }
@@ -35,6 +36,10 @@ function loadWeather(location, woeid) {
       html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
       html += '<li class="currently">'+weather.currently+'</li>';
       html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
+
+      for(var i=0;i<weather.forecast.length;i++) {
+        html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
+      }
 
       $("#weather").html(html);
     },
