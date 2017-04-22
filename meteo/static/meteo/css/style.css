@@ -1,3 +1,8 @@
+#map {
+width:100%;
+height:500px;
+}
+
 /* Optional: Makes the sample page fill the window. */
 html, body {
 height: 100%;
@@ -118,8 +123,10 @@ i {
   background: #fff;
   background: rgba(255,255,255,0.90);
   padding: 0px;
+  width:100%
   display: inline-block;
   border-radius: 5px;
+  list-style-type: none;
 }
 
 #weather .currently {
@@ -130,6 +137,7 @@ button {
   display: block;
   margin: 15px auto;
   width: 140px;
+  height:35px;
   padding: 5px;
   background: transparent;
   color: #fff;
@@ -158,10 +166,13 @@ body {
   $experimental-support-for-svg: true;
   @include background-image(linear-gradient(top, #5d4660    0%,#f7eec7 100%));
   font-family: 'Droid Sans', sans-serif;
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
 }
 
+
 .wrap {
-  width:300px;
+  width:1200px;
   height: 600px;
   margin: 0 auto;
   text-align:center;
@@ -175,13 +186,14 @@ body {
   margin-top:50px;
 }
 
-#weather ul li {
+#forecast li {
   margin-bottom:50px;
   display: inline;
   float:left;
-  width:100%;
+  width:300px;
   text-align:center;
   border-left:1px solid #DDDCD8;
+
 }
 
 .top {
@@ -213,11 +225,11 @@ p{
     text-align: center;
 }
 .bottom {
-margin-top:75px;
+margin-top:100px;
   p {
 
      font-family: 'Droid Serif', sans-serif;
-     padding:5px;
+     padding:7px;
     span {
      font-weight:bold;
 

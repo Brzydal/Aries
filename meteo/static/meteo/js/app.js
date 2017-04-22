@@ -37,45 +37,62 @@ function loadWeather(location, woeid) {
 //        html += '<li class="currently">'+weather.currently+'</li>';
 //        html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
 
-html += '<div class="wrap">';
-html += '<div class="table">';
-html += '<ul>';
+        html += '<div class="wrap">';
+        html += '<div class="table">';
+        html += '<ul id="forecast">';
 
-html += '<li>';
-html += '  <div class="top">';
-html += '    <h1>Today</h1>';
-html += '    <div class="circle"><h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2></div>';
-html += '  </div>';
+        html += '<li>';
+        html += '  <div class="top purple white">';
+        html += '    <h1>Today</h1>';
+        html += '    <div class="circle pink"><h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2></div>';
+        html += '  </div>';
 
-html += '  <div class="bottom">';
-html += '    <p><strong>CURRENTLY:</strong>'+weather.currently+'</p>';
-html += '    <p><strong>HIGH TEMP.:</strong>'+weather.high+'&deg;C</p>';
-html += '    <p><strong>LOW TEMP.:</strong>'+weather.low+'&deg;C</p>';
-html += '    <p><strong>WIND DIRECTION:</strong>'+weather.wind.direction+'</p>';
-html += '    <p><strong>WIND SPEED:</strong>'+weather.wind.speed+weather.units.speed+'</p>';
-html += '    <p><strong>PRESSURE:</strong>'+weather.pressure+weather.units.pressure+'</p>';
-html += '    <p><strong>HUMIDITY:</strong>'+weather.humidity+'%</p>';
-html += '    <p><strong>VISIBILITY:</strong>'+weather.visibility+weather.units.distance+'</p>';
-html += '    <p><strong>SUNRISE:</strong>'+weather.sunrise+'</p>';
-html += '    <p><strong>SUNSET:</strong>'+weather.sunset+'</p>';
-html += '    <p><strong>IMAGE:</strong> <img src="> '+weather.image+'" alt="Image" height="42" width="42"</p>';
-html += '    <p><strong>Thumbnail:</strong> <img src="> '+weather.thumbnail+'" alt="Image" height="42" width="42"</p>';
+        html += '  <div class="bottom">';
+        html += '    <p><strong>CURRENTLY:</strong>'+weather.currently+'</p>';
+        html += '    <p><strong>HIGH TEMP.:</strong>'+weather.high+'&deg;C</p>';
+        html += '    <p><strong>LOW TEMP.:</strong>'+weather.low+'&deg;C</p>';
+        html += '    <p><strong>WIND DIRECTION:</strong>'+weather.wind.direction+'</p>';
+        html += '    <p><strong>WIND SPEED:</strong>'+weather.wind.speed+weather.units.speed+'</p>';
+        html += '    <p><strong>PRESSURE:</strong>'+weather.pressure+weather.units.pressure+'</p>';
+        html += '    <p><strong>HUMIDITY:</strong>'+weather.humidity+'%</p>';
+        html += '    <p><strong>VISIBILITY:</strong>'+weather.visibility+weather.units.distance+'</p>';
+        html += '    <p><strong>SUNRISE:</strong>'+weather.sunrise+'</p>';
+        html += '    <p><strong>SUNSET:</strong>'+weather.sunset+'</p>';
 
-html += '    <div class="sign">';
-html += '    <a href="#" class="button">SIGN UP</a>';
-html += '    </div>';
-html += '  </div>';
-html += '</li>';
-
-html += '</ul>';
-html += '</div>';
-html += '</div>';
+        html += '  </div>';
+        html += '</li>';
 
 
 
-//      for(var i=0;i<weather.forecast.length;i++) {
+
+
+      for(var i=0;i<3;i++) {
 //        html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
-//      }
+        html += '<li>';
+        html += '  <div class="top">';
+        html += '    <h1>Today</h1>';
+        html += '    <div class="circle"><h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2></div>';
+        html += '  </div>';
+
+        html += '  <div class="bottom">';
+        html += '    <p><strong>CURRENTLY:</strong>'+weather.currently+'</p>';
+        html += '    <p><strong>HIGH TEMP.:</strong>'+weather.high+'&deg;C</p>';
+        html += '    <p><strong>LOW TEMP.:</strong>'+weather.low+'&deg;C</p>';
+        html += '    <p><strong>WIND DIRECTION:</strong>'+weather.wind.direction+'</p>';
+        html += '    <p><strong>WIND SPEED:</strong>'+weather.wind.speed+weather.units.speed+'</p>';
+        html += '    <p><strong>PRESSURE:</strong>'+weather.pressure+weather.units.pressure+'</p>';
+        html += '    <p><strong>HUMIDITY:</strong>'+weather.humidity+'%</p>';
+        html += '    <p><strong>VISIBILITY:</strong>'+weather.visibility+weather.units.distance+'</p>';
+        html += '    <p><strong>SUNRISE:</strong>'+weather.sunrise+'</p>';
+        html += '    <p><strong>SUNSET:</strong>'+weather.sunset+'</p>';
+
+        html += '  </div>';
+        html += '</li>';
+      }
+
+        html += '</ul>';
+        html += '</div>';
+        html += '</div>';
 
       $("#weather").html(html);
     },
