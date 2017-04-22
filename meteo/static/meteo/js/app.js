@@ -70,21 +70,16 @@ function loadWeather(location, woeid) {
 //        html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
         html += '<li>';
         html += '  <div class="top">';
-        html += '    <h1>Today</h1>';
-        html += '    <div class="circle"><h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2></div>';
+        html += '    <h1>'+weather.forecast[i].day+'</h1>';
+        html += '    <div class="circle"><h2><i class="icon-'+weather.forecast[i].code+'"></i> '+Math.floor((parseInt(weather.forecast[i].high)+parseInt(weather.forecast[i].low))/2)+'&deg;'+weather.units.temp+'</h2></div>';
         html += '  </div>';
 
         html += '  <div class="bottom">';
-        html += '    <p><strong>CURRENTLY:</strong>'+weather.currently+'</p>';
-        html += '    <p><strong>HIGH TEMP.:</strong>'+weather.high+'&deg;C</p>';
-        html += '    <p><strong>LOW TEMP.:</strong>'+weather.low+'&deg;C</p>';
-        html += '    <p><strong>WIND DIRECTION:</strong>'+weather.wind.direction+'</p>';
-        html += '    <p><strong>WIND SPEED:</strong>'+weather.wind.speed+weather.units.speed+'</p>';
-        html += '    <p><strong>PRESSURE:</strong>'+weather.pressure+weather.units.pressure+'</p>';
-        html += '    <p><strong>HUMIDITY:</strong>'+weather.humidity+'%</p>';
-        html += '    <p><strong>VISIBILITY:</strong>'+weather.visibility+weather.units.distance+'</p>';
-        html += '    <p><strong>SUNRISE:</strong>'+weather.sunrise+'</p>';
-        html += '    <p><strong>SUNSET:</strong>'+weather.sunset+'</p>';
+        html += '    <p><strong>CONDITION:</strong>'+weather.forecast[i].text+'</p>';
+        html += '    <p><strong>HIGH TEMP.:</strong>'+weather.forecast[i].high+'&deg;C</p>';
+        html += '    <p><strong>LOW TEMP.:</strong>'+weather.forecast[i].low+'&deg;C</p>';
+        html += '    <p><strong>DATE:</strong>'+weather.forecast[i].date+'</p>';
+
 
         html += '  </div>';
         html += '</li>';
