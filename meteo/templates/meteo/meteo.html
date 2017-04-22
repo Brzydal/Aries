@@ -4,11 +4,17 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'meteo/css/style.css' %}">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+
 {% endblock %}
 
 {% block content %}
 
 <div id="map"></div>
+<div id="layers">
+    <label class="radio-inline"><input type="radio" name="optradio">Option 1</label>
+    <label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
+    <label class="radio-inline"><input type="radio" name="optradio">Option 3</label>
+</div>
 <div id="button"><button class="js-geolocation btn-warning" style="display: none;">Use Your Location</button></div>
 <div id="weather"></div>
 
