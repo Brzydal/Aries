@@ -4,6 +4,7 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'meteo/css/style.css' %}">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+<link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
 
 {% endblock %}
 
@@ -11,24 +12,30 @@
 
 <div id="map"></div>
 <div id="layers">
-    <label class="radio-inline"><input type="radio" name="optradio">Option 1</label>
-    <label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
-    <label class="radio-inline"><input type="radio" name="optradio">Option 3</label>
+    <label class="radio-inline"><input type="radio" name="layer" value="city" checked="True">City</label>
+    <label class="radio-inline"><input type="radio" name="layer" value="clouds">Clouds</label>
+    <label class="radio-inline"><input type="radio" name="layer" value="precipitation">Precipitation</label>
+    <label class="radio-inline"><input type="radio" name="layer" value="pressure">Pressure</label>
+    <label class="radio-inline"><input type="radio" name="layer" value="wind">Wind</label>
+    <label class="radio-inline"><input type="radio" name="layer" value="temp_new">Temperature</label>
+
 </div>
 <div id="button"><button class="js-geolocation btn-warning" style="display: none;">Use Your Location</button></div>
 <div id="weather"></div>
 
-
+<div id="map1" class="map"></div>
 <!--<div id="cont_30bd257497a68ee63ef3e9c45acfaa9e"><script type="text/javascript" async src="https://www.yourweather.co.uk/wid_loader/30bd257497a68ee63ef3e9c45acfaa9e"></script></div>-->
 
 {% endblock %}
 
 
 {% block js %}
+<script src="https://openlayers.org/en/v4.1.0/build/ol.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsLzO7lckWXomSRWsCap6JuqB3XYMrTNY">
 </script>
 
 <script src="{% static 'meteo/js/app.js' %}"></script>
+
 <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsLzO7lckWXomSRWsCap6JuqB3XYMrTNY&callback=initMap">-->
     <!--</script>-->
 
