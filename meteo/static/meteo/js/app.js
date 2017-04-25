@@ -283,12 +283,91 @@ google.maps.event.addDomListener(window, 'load', initMap({lat: -25.363, lng: 131
 
 
 
-var mymap = L.map('mapid').setView([-25.363, 131.044], 5);
+//leaflet map
 
-L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data © OpenStreetMap contributors, CC-BY-SA',
-    maxZoom: 18
-}).addTo(mymap);
+var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+	maxZoom: 18,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+
+var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+	maxZoom: 18,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+
+var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+
+
+
+var mymap = L.map('mapid', {
+    center: [-25.363, 131.044],
+    zoom: 5,
+    layers: [OpenStreetMap_Mapnik]
+});
+
+
+
+
+
+var OpenWeatherMap_Clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png', {
+	maxZoom: 18,
+	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+	opacity: 0.5
+});
+var OpenWeatherMap_Pressure = L.tileLayer('http://{s}.tile.openweathermap.org/map/pressure/{z}/{x}/{y}.png', {
+	maxZoom: 18,
+	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+	opacity: 0.5
+});
+var OpenWeatherMap_Wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png', {
+	maxZoom: 18,
+	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+	opacity: 0.5
+});
+
+
+var baseMaps = {
+    "Normal": OpenStreetMap_Mapnik,
+    "Black & White": OpenStreetMap_BlackAndWhite,
+    "Color": Esri_WorldImagery
+};
+
+var overlayMaps = {
+    "Clouds": OpenWeatherMap_Clouds,
+    "Pressure": OpenWeatherMap_Pressure,
+    "Wind": OpenWeatherMap_Wind
+};
+
+
+L.control.layers(baseMaps, overlayMaps).addTo(mymap);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//    attribution: 'Map data © OpenStreetMap contributors, CC-BY-SA',
+//    maxZoom: 18
+//}).addTo(mymap);
 
 $('#layers').on('click', function() {
   console.log($('input[name=layer]:checked').val());
@@ -297,26 +376,41 @@ var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/
     attribution: 'Map data © OpenWeatherMap',
     maxZoom: 18
 })
-var precipitation = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+var precipitation = L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
     attribution: 'Map data © OpenWeatherMap',
     maxZoom: 18
 })
-var  = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+var pressure = L.tileLayer('http://{s}.tile.openweathermap.org/map/pressure/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
     attribution: 'Map data © OpenWeatherMap',
     maxZoom: 18
 })
-var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+var wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
     attribution: 'Map data © OpenWeatherMap',
     maxZoom: 18
 })
-    denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-    aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-    golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+var temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18
+})
 
-L.tileLayer('http://{s}.tile.openweathermap.org/map/'+$('input[name=layer]:checked').val()+'/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-    attribution: 'Map data © OpenWeatherMap',
-    maxZoom: 18
-}).addTo(mymap);
+
+var all = L.layerGroup([clouds, precipitation, pressure, wind, temperature]);
+
+var baseMaps = {
+    "Grayscale": grayscale,
+    "Streets": streets
+};
+
+var overlayMaps = {
+    "Clouds": clouds,
+    "Winds": winds,
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+//L.tileLayer('http://{s}.tile.openweathermap.org/map/'+$('input[name=layer]:checked').val()+'/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+//    attribution: 'Map data © OpenWeatherMap',
+//    maxZoom: 18
+//}).addTo(mymap);
 
 
 
