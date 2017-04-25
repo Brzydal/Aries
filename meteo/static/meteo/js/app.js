@@ -20,10 +20,28 @@ $('.js-geolocation').on('click', function() {
 });
 
 
-
 $(document).ready(function() {
   loadWeather('-25.363,131.044',''); //@params location, woeid
 //  initMap({lat: -25.363, lng: 131.044});
+
+var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+console.log(mymap)
+
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data © OpenStreetMap contributors, CC-BY-SA',
+    maxZoom: 18
+}).addTo(mymap);
+
+
+
+//var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+//          osmAttribution = 'Map data © OpenStreetMap contributors, CC-BY-SA',
+//          osmLayer = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttribution});
+//
+//var map = new L.Map('mapid');
+//map.setView(new L.LatLng(0, 0), 4)
+//map.addLayer(osmLayer);
 
 });
 
@@ -123,6 +141,7 @@ function initMap(myLatLng) {
     google.maps.event.addListener(marker, 'dragend', function(){
         var coord = marker.getPosition().toUrlValue();
         loadWeather(coord);
+        console.log(coord)
       });
 
     // Add interaction listeners to make weather requests
@@ -206,10 +225,10 @@ function initMap(myLatLng) {
     if (results.list.length > 0) {
         resetData();
         for (var i = 0; i < results.list.length; i++) {
-            console.log(results.list[i]);
+//            console.log(results.list[i]);
           geoJSON.features.push(jsonToGeoJson(results.list[i]));
         }
-        console.log(geoJSON);
+//        console.log(geoJSON);
         drawIcons(geoJSON);
 
     }
@@ -270,42 +289,58 @@ function initMap(myLatLng) {
 
 google.maps.event.addDomListener(window, 'load', initMap({lat: -25.363, lng: 131.044}));
 
+
+
 $('#layers').on('click', function() {
   console.log($('input[name=layer]:checked').val());
 
-var map = new ol.Map({
-    target: 'map1',
-    layers: [
-      new ol.layer.Tile({
-        source: new ol.source.OSM()
-      })
-    ],
-    view: new ol.View({
-      center: ol.proj.fromLonLat([37.41, 8.82]),
-      zoom: 4
-    })
-});
-var zoom = map.getView().getZoom()
-var tile_x = long2tile(37.41,zoom)
-function long2tile(lon,zoom) { return (Math.floor((lon+180)/360*Math.pow(2,zoom))); }
-var tile_y = lat2tile(8.82,zoom)
-function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }
-console.log(tile_x);
-console.log(tile_y);
-    var layer_cloud = new ol.layer.Tile({
-          source: new ol.source.XYZ({
-            // Replace this URL with a URL you generate. To generate an ID go to http://home.openweathermap.org/
-            // and click "map editor" in the top right corner. Make sure you're registered!
-            url: 'http://tile.openweathermap.org/map/clouds/'
-            +map.getView().getZoom()+'/'
-            +tile_x+'/'
-            +tile_y+'.png?appid=b52d55bed391bb21898ec822730fcbf3',
-          })
-      });
+var mymap = $('#mapid').firstElementParent;
 
-map.addLayer(layer_cloud);
+console.log(mymap)
 
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data © OpenStreetMap contributors, CC-BY-SA',
+    maxZoom: 18
+}).addTo(mymap);
 
-console.log(layer_cloud.getSource())
+L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18
+}).addTo(mymap);
+
+//var map = new ol.Map({
+//    target: 'map1',
+//    layers: [
+//      new ol.layer.Tile({
+//        source: new ol.source.OSM()
+//      })
+//    ],
+//    view: new ol.View({
+//      center: ol.proj.fromLonLat([37.41, 8.82]),
+//      zoom: 4
+//    })
+//});
+//var zoom = map.getView().getZoom();
+//var tile_x = long2tile(37.41,zoom);
+//function long2tile(lon,zoom) { return (Math.floor((lon+180)/360*Math.pow(2,zoom))); }
+//var tile_y = lat2tile(8.82,zoom);
+//function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }
+//console.log(tile_x);
+//console.log(tile_y);
+//    var layer_cloud = new ol.layer.Tile({
+//          source: new ol.source.XYZ({
+//            // Replace this URL with a URL you generate. To generate an ID go to http://home.openweathermap.org/
+//            // and click "map editor" in the top right corner. Make sure you're registered!
+//            url: 'http://tile.openweathermap.org/map/clouds/'
+//            +map.getView().getZoom()+'/'
+//            +tile_x+'/'
+//            +tile_y+'.png?appid=b52d55bed391bb21898ec822730fcbf3',
+//          })
+//      });
+//
+//map.addLayer(layer_cloud);
+//
+//
+//console.log(layer_cloud.getSource())
 
 });
