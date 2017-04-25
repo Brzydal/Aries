@@ -311,17 +311,17 @@ var mymap = L.map('mapid', {
 
 
 
-var OpenWeatherMap_Clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png', {
+var OpenWeatherMap_Clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
 	maxZoom: 18,
 	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
 	opacity: 0.5
 });
-var OpenWeatherMap_Pressure = L.tileLayer('http://{s}.tile.openweathermap.org/map/pressure/{z}/{x}/{y}.png', {
+var OpenWeatherMap_Pressure = L.tileLayer('http://{s}.tile.openweathermap.org/map/pressure/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
 	maxZoom: 18,
 	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
 	opacity: 0.5
 });
-var OpenWeatherMap_Wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png', {
+var OpenWeatherMap_Wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
 	maxZoom: 18,
 	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
 	opacity: 0.5

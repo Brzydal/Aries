@@ -12,6 +12,8 @@ input[type=checkbox], input[type=radio]{
 .checkbox-inline, .radio-inline {
     vertical-align: 0;
 }
+
+
 /* Optional: Makes the sample page fill the window. */
 html, body {
 height: 100%;
@@ -272,4 +274,19 @@ margin-top:100px;
 
 .pink {
   background-color:#BC9B94;
+}
+
+/*leaflet map styling*/
+form {
+    margin: 0 auto;
+    width: auto;
+    padding-top: 5px;
+    color: black;
+    text-align:left;
+}
+
+input[type=radio],input[type=checkbox] {
+ display: inline-block;
+ text-align:left;
+ margin:0;
 }
