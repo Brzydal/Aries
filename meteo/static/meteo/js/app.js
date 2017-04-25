@@ -24,14 +24,6 @@ $(document).ready(function() {
   loadWeather('-25.363,131.044',''); //@params location, woeid
 //  initMap({lat: -25.363, lng: 131.044});
 
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-
-console.log(mymap)
-
-L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data © OpenStreetMap contributors, CC-BY-SA',
-    maxZoom: 18
-}).addTo(mymap);
 
 
 
@@ -291,22 +283,42 @@ google.maps.event.addDomListener(window, 'load', initMap({lat: -25.363, lng: 131
 
 
 
-$('#layers').on('click', function() {
-  console.log($('input[name=layer]:checked').val());
-
-var mymap = $('#mapid').firstElementParent;
-
-console.log(mymap)
+var mymap = L.map('mapid').setView([-25.363, 131.044], 5);
 
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data © OpenStreetMap contributors, CC-BY-SA',
     maxZoom: 18
 }).addTo(mymap);
 
-L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+$('#layers').on('click', function() {
+  console.log($('input[name=layer]:checked').val());
+
+var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18
+})
+var precipitation = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18
+})
+var  = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18
+})
+var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18
+})
+    denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+    aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+    golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+
+L.tileLayer('http://{s}.tile.openweathermap.org/map/'+$('input[name=layer]:checked').val()+'/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
     attribution: 'Map data © OpenWeatherMap',
     maxZoom: 18
 }).addTo(mymap);
+
+
 
 //var map = new ol.Map({
 //    target: 'map1',
