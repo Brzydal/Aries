@@ -421,7 +421,12 @@ L.control.layers(baseMaps, overlayMaps).addTo(mymap);
 
 
 
-
+//In Meteo View toggling between map and list
+$('#toggle_button').click(function(){
+    $('#map').toggleClass("hidden");
+    $('#mapid').toggleClass("hidden");
+    initMap({lat: -25.363, lng: 131.044});
+});
 
 
 
