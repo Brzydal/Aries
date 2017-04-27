@@ -16,6 +16,9 @@ $('.js-geolocation').on('click', function() {
     myLatLng['lng'] = position.coords.longitude;
 
     initMap(myLatLng); //load map using your lat/lng coordinates
+
+    marker.setLatLng(new L.LatLng(position.coords.latitude, position.coords.longitude),{draggable:'true'});
+    mymap.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
   });
 });
 
@@ -122,6 +125,91 @@ function initMap(myLatLng) {
         console.log(coord)
       });
 
+
+
+//    //LEAFLET MAP
+//
+//    //tile layers
+//    var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+//        maxZoom: 18,
+//        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+//    });
+//
+//    var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+//        maxZoom: 18,
+//        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+//    });
+//
+//    var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+//        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+//    });
+//
+//    //leaflet map
+//    var map = L.map('map', {
+//        center: [myLatLng.lat, myLatLng.lng],
+//        zoom: 5,
+//        layers: [OpenStreetMap_Mapnik]
+//    });
+//
+//    var marker = new L.marker([-25.363, 131.044], {draggable:'true'}).addTo(map).bindPopup("I am a green leaf.");
+//
+//    marker.on('dragend', function(event){
+//        var marker = event.target;
+//        var position = marker.getLatLng();
+//        marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
+//        map.panTo(new L.LatLng(position.lat, position.lng));
+//        console.log((position.lat).toFixed(6), (position.lng).toFixed(6));
+//        loadWeather((position.lat).toFixed(6)+','+(position.lng).toFixed(6));
+//
+//      });
+//
+//    //weather layers
+//    var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+//        attribution: 'Map data © OpenWeatherMap',
+//        maxZoom: 18,
+//        opacity: 0.5
+//    })
+//    var precipitation = L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+//        attribution: 'Map data © OpenWeatherMap',
+//        maxZoom: 18,
+//        opacity: 0.5
+//    })
+//    var pressure = L.tileLayer('http://{s}.tile.openweathermap.org/map/pressure/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+//        attribution: 'Map data © OpenWeatherMap',
+//        maxZoom: 18,
+//        opacity: 0.5
+//    })
+//    var wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+//        attribution: 'Map data © OpenWeatherMap',
+//        maxZoom: 18,
+//        opacity: 0.5
+//    })
+//    var temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+//        attribution: 'Map data © OpenWeatherMap',
+//        maxZoom: 18,
+//        opacity: 0.5
+//    })
+//
+//
+//    var baseMaps = {
+//        "Normal": OpenStreetMap_Mapnik,
+//        "Black & White": OpenStreetMap_BlackAndWhite,
+//        "Color": Esri_WorldImagery
+//    };
+//
+//    var overlayMaps = {
+//        "Clouds": clouds,
+//        "Precipitation":precipitation,
+//        "Pressure": pressure,
+//        "Wind": wind,
+//        "Temperature":temperature,
+//    };
+//
+//
+//    L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+
+
     // Add interaction listeners to make weather requests
     google.maps.event.addListener(map, 'idle', checkIfDataRequested);
     // Sets up and populates the info window with details
@@ -166,14 +254,14 @@ function initMap(myLatLng) {
   // Make the weather request
   var getWeather = function(northLat, eastLng, southLat, westLng) {
     gettingData = true;
-    if ($('input[name=layer]:checked').val()=='city'){
-        var requestString = "http://api.openweathermap.org/data/2.5/box/city?bbox="
+
+    var requestString = "http://api.openweathermap.org/data/2.5/box/city?bbox="
                             + westLng + "," + northLat + "," //left top
                             + eastLng + "," + southLat + "," //right bottom
                             + map.getZoom()
                             + "&cluster=yes&format=json"
                             + "&APPID=" + openWeatherMapKey;
-    }
+
 
     request = new XMLHttpRequest();
     request.onload = proccessResults;
@@ -188,10 +276,8 @@ function initMap(myLatLng) {
     if (results.list.length > 0) {
         resetData();
         for (var i = 0; i < results.list.length; i++) {
-//            console.log(results.list[i]);
           geoJSON.features.push(jsonToGeoJson(results.list[i]));
         }
-//        console.log(geoJSON);
         drawIcons(geoJSON);
 
     }
@@ -252,10 +338,9 @@ function initMap(myLatLng) {
 
 google.maps.event.addDomListener(window, 'load', initMap({lat: -25.363, lng: 131.044}));
 
+//LEAFLET MAP
 
-
-//leaflet map
-
+//tile layers
 var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
 	maxZoom: 18,
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -270,15 +355,26 @@ var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
 
-
+//leaflet map
 var mymap = L.map('mapid', {
     center: [-25.363, 131.044],
     zoom: 5,
     layers: [OpenStreetMap_Mapnik]
 });
 
+var marker = new L.marker([-25.363, 131.044], {draggable:'true'}).addTo(mymap).bindPopup("I am a green leaf.");
 
+marker.on('dragend', function(event){
+    var marker = event.target;
+    var position = marker.getLatLng();
+    marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
+    mymap.panTo(new L.LatLng(position.lat, position.lng));
+    console.log((position.lat).toFixed(6), (position.lng).toFixed(6));
+    loadWeather((position.lat).toFixed(6)+','+(position.lng).toFixed(6));
 
+  });
+
+//weather layers
 var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
     attribution: 'Map data © OpenWeatherMap',
     maxZoom: 18,
@@ -322,6 +418,8 @@ var overlayMaps = {
 
 
 L.control.layers(baseMaps, overlayMaps).addTo(mymap);
+
+
 
 
 
