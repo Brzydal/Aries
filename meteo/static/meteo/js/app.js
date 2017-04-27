@@ -24,17 +24,6 @@ $(document).ready(function() {
   loadWeather('-25.363,131.044',''); //@params location, woeid
 //  initMap({lat: -25.363, lng: 131.044});
 
-
-
-
-//var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-//          osmAttribution = 'Map data © OpenStreetMap contributors, CC-BY-SA',
-//          osmLayer = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttribution});
-//
-//var map = new L.Map('mapid');
-//map.setView(new L.LatLng(0, 0), 4)
-//map.addLayer(osmLayer);
-
 });
 
 function loadWeather(location, woeid) {
@@ -44,10 +33,8 @@ function loadWeather(location, woeid) {
     unit: 'c',
     success: function(weather) {
 
-//        html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+
         html = '<ul><li>'+weather.title+'</li></ul><br>';
-//        html += '<li class="currently">'+weather.currently+'</li>';
-//        html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
 
         html += '<div class="wrap">';
         html += '<div class="table">';
@@ -76,7 +63,6 @@ function loadWeather(location, woeid) {
 
 
       for(var i=0;i<3;i++) {
-//        html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
         html += '<li>';
         html += '  <div class="top">';
         html += '    <h1>'+weather.forecast[i].day+'</h1>';
@@ -188,22 +174,7 @@ function initMap(myLatLng) {
                             + "&cluster=yes&format=json"
                             + "&APPID=" + openWeatherMapKey;
     }
-//    else {
-//        var requestString = "http://tile.openweathermap.org/map/"
-//                            + $('input[name=layer]:checked').val() +"/" //layer
-//                            + '4'+ "/" + '4' + "/" //left top
-////                            + eastLng + "," + southLat + "," //right bottom
-//                            + map.getZoom()
-//                            + ".png?"
-//                            + "appid=" + openWeatherMapKey;
-//    }
 
-
-//    console.log(westLng);
-//    console.log(northLat);
-//    console.log(eastLng);
-//    console.log(southLat);
-//    console.log(requestString);
     request = new XMLHttpRequest();
     request.onload = proccessResults;
     request.open("get", requestString, true);
@@ -300,7 +271,6 @@ var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/
 });
 
 
-
 var mymap = L.map('mapid', {
     center: [-25.363, 131.044],
     zoom: 5,
@@ -309,23 +279,31 @@ var mymap = L.map('mapid', {
 
 
 
-
-
-var OpenWeatherMap_Clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-	maxZoom: 18,
-	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
-	opacity: 0.5
-});
-var OpenWeatherMap_Pressure = L.tileLayer('http://{s}.tile.openweathermap.org/map/pressure/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-	maxZoom: 18,
-	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
-	opacity: 0.5
-});
-var OpenWeatherMap_Wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-	maxZoom: 18,
-	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
-	opacity: 0.5
-});
+var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18,
+    opacity: 0.5
+})
+var precipitation = L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18,
+    opacity: 0.5
+})
+var pressure = L.tileLayer('http://{s}.tile.openweathermap.org/map/pressure/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18,
+    opacity: 0.5
+})
+var wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18,
+    opacity: 0.5
+})
+var temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
+    attribution: 'Map data © OpenWeatherMap',
+    maxZoom: 18,
+    opacity: 0.5
+})
 
 
 var baseMaps = {
@@ -335,9 +313,11 @@ var baseMaps = {
 };
 
 var overlayMaps = {
-    "Clouds": OpenWeatherMap_Clouds,
-    "Pressure": OpenWeatherMap_Pressure,
-    "Wind": OpenWeatherMap_Wind
+    "Clouds": clouds,
+    "Precipitation":precipitation,
+    "Pressure": pressure,
+    "Wind": wind,
+    "Temperature":temperature,
 };
 
 
@@ -348,105 +328,3 @@ L.control.layers(baseMaps, overlayMaps).addTo(mymap);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//    attribution: 'Map data © OpenStreetMap contributors, CC-BY-SA',
-//    maxZoom: 18
-//}).addTo(mymap);
-
-$('#layers').on('click', function() {
-  console.log($('input[name=layer]:checked').val());
-
-var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-    attribution: 'Map data © OpenWeatherMap',
-    maxZoom: 18
-})
-var precipitation = L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-    attribution: 'Map data © OpenWeatherMap',
-    maxZoom: 18
-})
-var pressure = L.tileLayer('http://{s}.tile.openweathermap.org/map/pressure/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-    attribution: 'Map data © OpenWeatherMap',
-    maxZoom: 18
-})
-var wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-    attribution: 'Map data © OpenWeatherMap',
-    maxZoom: 18
-})
-var temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-    attribution: 'Map data © OpenWeatherMap',
-    maxZoom: 18
-})
-
-
-var all = L.layerGroup([clouds, precipitation, pressure, wind, temperature]);
-
-var baseMaps = {
-    "Grayscale": grayscale,
-    "Streets": streets
-};
-
-var overlayMaps = {
-    "Clouds": clouds,
-    "Winds": winds,
-};
-
-L.control.layers(baseMaps, overlayMaps).addTo(map);
-//L.tileLayer('http://{s}.tile.openweathermap.org/map/'+$('input[name=layer]:checked').val()+'/{z}/{x}/{y}.png?appid=b52d55bed391bb21898ec822730fcbf3', {
-//    attribution: 'Map data © OpenWeatherMap',
-//    maxZoom: 18
-//}).addTo(mymap);
-
-
-
-//var map = new ol.Map({
-//    target: 'map1',
-//    layers: [
-//      new ol.layer.Tile({
-//        source: new ol.source.OSM()
-//      })
-//    ],
-//    view: new ol.View({
-//      center: ol.proj.fromLonLat([37.41, 8.82]),
-//      zoom: 4
-//    })
-//});
-//var zoom = map.getView().getZoom();
-//var tile_x = long2tile(37.41,zoom);
-//function long2tile(lon,zoom) { return (Math.floor((lon+180)/360*Math.pow(2,zoom))); }
-//var tile_y = lat2tile(8.82,zoom);
-//function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }
-//console.log(tile_x);
-//console.log(tile_y);
-//    var layer_cloud = new ol.layer.Tile({
-//          source: new ol.source.XYZ({
-//            // Replace this URL with a URL you generate. To generate an ID go to http://home.openweathermap.org/
-//            // and click "map editor" in the top right corner. Make sure you're registered!
-//            url: 'http://tile.openweathermap.org/map/clouds/'
-//            +map.getView().getZoom()+'/'
-//            +tile_x+'/'
-//            +tile_y+'.png?appid=b52d55bed391bb21898ec822730fcbf3',
-//          })
-//      });
-//
-//map.addLayer(layer_cloud);
-//
-//
-//console.log(layer_cloud.getSource())
-
-});
