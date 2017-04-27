@@ -108,7 +108,7 @@ function initMap(myLatLng) {
       zoom: 5,
       center: myLatLng,
     };
-    map = new google.maps.Map(document.getElementById('map'),
+    map = new google.maps.Map(document.getElementById('mapid'),
         mapOptions);
 
     var marker = new google.maps.Marker({
@@ -356,13 +356,13 @@ var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/
 });
 
 //leaflet map
-var mymap = L.map('mapid', {
+var mymap = L.map('map', {
     center: [-25.363, 131.044],
     zoom: 5,
     layers: [OpenStreetMap_Mapnik]
 });
 
-var marker = new L.marker([-25.363, 131.044], {draggable:'true'}).addTo(mymap).bindPopup("I am a green leaf.");
+var marker = new L.marker([-25.363, 131.044], {draggable:'true'}).addTo(mymap).bindPopup("Weather Position");
 
 marker.on('dragend', function(event){
     var marker = event.target;

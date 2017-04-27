@@ -1,9 +1,12 @@
 #map {
-width:100%;
-height:500px;
+    width:100%;
+    height:500px;
 }
 
-#mapid { height: 500px; }
+#mapid {
+    height: 500px;
+    margin-bottom:50px;
+}
 
 input[type=checkbox], input[type=radio]{
     width:10px;
